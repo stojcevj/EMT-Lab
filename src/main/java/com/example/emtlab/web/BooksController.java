@@ -3,6 +3,7 @@ package com.example.emtlab.web;
 import com.example.emtlab.model.Book;
 import com.example.emtlab.model.dto.BookDto;
 import com.example.emtlab.service.BookService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping({"/", "/books"})
+@CrossOrigin(origins = {"http://localhost:3000"})
+@RequestMapping("/api/books")
 public class BooksController {
     private final BookService bookService;
 
@@ -24,8 +26,8 @@ public class BooksController {
     }
 
     @GetMapping("/pagination")
-    public List<Book> getBooksWithPagination(Pageable pageable){
-        return bookService.listAllWithPagination(pageable).getContent();
+    public Page<Book> getBooksWithPagination(Pageable pageable){
+        return bookService.listAllWithPagination(pageable);
     }
 
     @GetMapping("/{id}")

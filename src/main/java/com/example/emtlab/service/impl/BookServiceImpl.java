@@ -75,7 +75,11 @@ public class BookServiceImpl implements BookService {
                 .orElseThrow(() -> new BookIdNotFoundException(id));
 
         Integer availableBooks = book.getAvailableCopies();
-        book.setAvailableCopies(availableBooks - 1);
+        if(availableBooks == 0){
+            book.setAvailableCopies(0);
+        }else {
+            book.setAvailableCopies(availableBooks - 1);
+        }
         return Optional.of(bookRepository.save(book));
     }
 }
