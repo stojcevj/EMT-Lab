@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = {"https://emt-lab-frontend-production.up.railway.app/"})
 @RequestMapping("/api/books/categories")
 public class CategoryController {
 
